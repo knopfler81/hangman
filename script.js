@@ -1,6 +1,5 @@
 
 // dessine le pendu
-
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 
@@ -58,9 +57,7 @@ function leftLeg() {
 };
 
 // clavier
-const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
-      'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
-      't', 'u', 'v', 'w', 'x', 'y', 'z'];
+const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
  function myKeys(){
 	myKeys = document.getElementById("keys");
@@ -79,12 +76,12 @@ const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
 myKeys();
 
 
-//mots à deviner
-var words = ["chien", "chat", "lapin", "poule", "cheval"]
+var words = ["breaking bad", "sons of annarchy", "la casa de papel", "stanger things", "better call saul", "thirteen reasons why", "narcos", "black miror"]
+
 
 var word = document.getElementById("word");
-guessWord =  words[Math.floor(Math.random() * words.length)];
 
+guessWord =  words[Math.floor(Math.random() * words.length)];
 
 var hiddenWord = word.innerHTML  = guessWord.replace(/[a-z]/g, "_")
 
@@ -92,6 +89,9 @@ var mistakes = 0
 
 // cherche si lettres dans le mot
 
+function refresh(){
+	location.reload()
+}
 
 var buttons = Array.from(document.getElementsByTagName('li'));
 
@@ -110,10 +110,17 @@ var buttons = Array.from(document.getElementsByTagName('li'));
 							var char  = guessWord.charAt(i)	
 							var index = guessWord.indexOf(char)
 							var _remplace = hiddenWord.charAt(index)
-
 						}
 					}
-					hiddenWord = hiddenWord.substr(0, index) + char + hiddenWord.substr(index + 1);
+					 var indices = [];
+					 for(var i=0 ; i < guessWord.length  ;i+= 1) {
+					    if(guessWord[i] === char) indices.push(i);
+					 }
+
+					indices.forEach(function(indice){
+
+						hiddenWord = hiddenWord.substr(0, indice) + char + hiddenWord.substr(indice + 1);
+					})
 					word.innerHTML = hiddenWord
 				}
 			else{

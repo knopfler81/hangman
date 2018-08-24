@@ -29,3 +29,12 @@ li {
 	text-align: center;
 	letter-spacing: 5px;
 }
+
+
+button {
+    margin: 20px;
+}
+
+#myTitle {
+    margin-top: 20px;
+}
