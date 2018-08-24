@@ -80,7 +80,7 @@ myKeys();
 
 
 //mots à deviner
-var words = ["breaking bad", "sons of anarchy"]
+var words = ["chien", "chat", "lapin", "poule", "cheval"]
 
 var word = document.getElementById("word");
 guessWord =  words[Math.floor(Math.random() * words.length)];
