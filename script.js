@@ -1,99 +1,9 @@
 
-// clavier
-const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
-      'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
-      't', 'u', 'v', 'w', 'x', 'y', 'z'];
-
- function myKeys(){
-	myKeys = document.getElementById("keys");
-	lettersList = document.createElement("ul");
-
-	for(var i = 0; i < alphabet.length; i++){
-		lettersList.id = "alphabet";
-		list = document.createElement("li");
-		// list.id = "letter";
-		list.innerHTML = alphabet[i];
-		myKeys.appendChild(lettersList);
-    lettersList.appendChild(list);
-    }
-	}
-
-myKeys();
-
-
-//mots à deviner
-
-var words = ["chat", "chien"]
-
-var word = document.getElementById("word");
-guessWord =  words[Math.floor(Math.random() * words.length)];
-
-
-var hiddenWord = word.innerHTML  = guessWord.replace(/./g, "_")
-
-
-
-// cherche si lettres dans le mot
-
-
-var buttons = Array.from(document.getElementsByTagName('li'));
-
-	buttons.forEach(function(button){
-		button.addEventListener("click", checkButton)
-		
-		function checkButton(){
-			button.style.backgroundColor = "green"
-			setTimeout(function(){
-				button.style.backgroundColor = "#fff"
-			}, 1000)	
-
-			if(guessWord.includes(button.innerHTML)){
-					for(var i = 0; i < hiddenWord.length; i+= 1){
-						if(guessWord.charAt(i) === button.innerHTML){
-							var char  = guessWord.charAt(i)	
-							var index = guessWord.indexOf(char)
-
-
-							var _remplace = hiddenWord.charAt(index)
-
-
-							console.log("Le char est: " + char)
-							console.log("Remp est à l'index " + index)
-
-						}
-					}
-					hiddenWord = hiddenWord.substr(0, index) + char + hiddenWord.substr(index + 1);
-					word.innerHTML = hiddenWord
-			}
-			else{
-				alert("NOPE")
-			}
-		}
-	})
-
-
-
-
-
 // dessine le pendu
 
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 
-draw();
-
-function draw(){
-	frameTop();
-	frameLeft();
-	frameBottom();
-	frameRope();
-	head();
-	body();
-	leftHarm();
-	rightHarm();
-	leftLeg();
-	rightLeg();
-}
 
 function frameTop(){
 	ctx.fillStyle = "#fff"
@@ -112,13 +22,13 @@ function frameBottom(){
 
 function frameRope(){
 	ctx.fillStyle = "#fff"
-	ctx.fillRect( 150, 15, 5, 150)
+	ctx.fillRect( 150, 15, 5, 55)
 }
 
 function head(){
 	ctx.fillStyle = "red";	
 	ctx.beginPath();
-	ctx.arc(150, 100, 25, 0, Math.PI * 2, false)
+	ctx.arc(150, 95, 25, 0, Math.PI * 2, false)
 	ctx.fill();
 };
 
@@ -146,3 +56,102 @@ function leftLeg() {
   ctx.fillStyle = "#fff";
   ctx.fillRect(145, 220, 5, 100);
 };
+
+// clavier
+const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
+      'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
+      't', 'u', 'v', 'w', 'x', 'y', 'z'];
+
+ function myKeys(){
+	myKeys = document.getElementById("keys");
+	lettersList = document.createElement("ul");
+
+	for(var i = 0; i < alphabet.length; i++){
+		lettersList.id = "alphabet";
+		list = document.createElement("li");
+		// list.id = "letter";
+		list.innerHTML = alphabet[i];
+		myKeys.appendChild(lettersList);
+    lettersList.appendChild(list);
+    }
+	}
+
+myKeys();
+
+
+//mots à deviner
+var words = ["breaking bad", "sons of anarchy"]
+
+var word = document.getElementById("word");
+guessWord =  words[Math.floor(Math.random() * words.length)];
+
+
+var hiddenWord = word.innerHTML  = guessWord.replace(/[a-z]/g, "_")
+
+var mistakes = 0
+
+// cherche si lettres dans le mot
+
+
+var buttons = Array.from(document.getElementsByTagName('li'));
+
+	buttons.forEach(function(button){
+		button.addEventListener("click", checkButton)
+		
+		function checkButton(){
+			button.style.backgroundColor = "green"
+			setTimeout(function(){
+				button.style.backgroundColor = "#fff"
+			}, 1000)	
+
+			if(guessWord.includes(button.innerHTML)){
+					for(var i = 0; i < hiddenWord.length; i+= 1){
+						if(guessWord.charAt(i) === button.innerHTML){
+							var char  = guessWord.charAt(i)	
+							var index = guessWord.indexOf(char)
+							var _remplace = hiddenWord.charAt(index)
+
+						}
+					}
+					hiddenWord = hiddenWord.substr(0, index) + char + hiddenWord.substr(index + 1);
+					word.innerHTML = hiddenWord
+				}
+			else{
+				button.style.backgroundColor = "red"
+				mistakes += 1
+				if(mistakes === 1){
+					frameBottom();
+				}
+				else if(mistakes === 2){
+					frameLeft();
+				}
+				else if(mistakes === 3){
+					frameTop();
+				}
+				else if(mistakes === 4){
+					frameRope();
+				}
+				else if(mistakes === 5){
+					head();
+				}
+				else if(mistakes === 6){
+					body();
+				}
+				else if(mistakes === 7){
+					leftHarm();
+				}
+				else if(mistakes === 8){
+					rightHarm();
+				}
+				else if(mistakes === 9){
+					leftLeg();
+				}
+				else if(mistakes === 10){
+					rightLeg();
+				}
+			}
+		}
+	})
+
+
+
