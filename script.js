@@ -76,7 +76,7 @@ const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm
 myKeys();
 
 
-var words = ["breaking bad", "sons of annarchy", "la casa de papel", "stanger things", "better call saul", "thirteen reasons why", "narcos", "black mirror"]
+var words = ["breaking bad", "sons of annarchy", "la casa de papel", "stranger things", "better call saul", "thirteen reasons why", "narcos", "black mirror"]
 
 
 var word = document.getElementById("word");
