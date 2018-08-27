@@ -56,6 +56,47 @@ function leftLeg() {
   ctx.fillRect(145, 220, 5, 100);
 };
 
+
+// partie gagnée
+function winner(){
+
+	//nettoie
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	
+	//message 
+	ctx.font = "50px Arial";
+	ctx.fillStyle = "#fff"
+	ctx.fillText("You won!",50,100);
+
+	//head
+	ctx.fillStyle = "green";	
+	ctx.beginPath();
+	ctx.arc(150, 175, 25, 0, Math.PI * 2, false)
+	ctx.fill();
+
+	//body
+	ctx.fillStyle = "#fff"
+	ctx.fillRect( 150, 200, 5, 100)
+
+	//leftHarm
+	ctx.fillStyle = "#fff"
+	ctx.fillRect( 70, 250, 80, 5)
+
+	//rightHarm
+	ctx.fillStyle = "#fff"
+	ctx.fillRect( 150,250, 80, 5)
+
+	//rightLeg
+	ctx.fillStyle = "#fff";
+	ctx.fillRect(155, 300, 5, 100);
+
+
+	//leftLeg
+	ctx.fillStyle = "#fff";
+	ctx.fillRect(145, 300, 5, 100);
+}
+
+
 // clavier
 const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
@@ -76,6 +117,7 @@ const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm
 myKeys();
 
 
+// créé les mots
 var words = ["breaking bad", "sons of annarchy", "la casa de papel", "stranger things", "better call saul", "thirteen reasons why", "narcos", "black mirror"]
 
 
@@ -94,6 +136,8 @@ function refresh(){
 }
 
 var buttons = Array.from(document.getElementsByTagName('li'));
+var message = document.getElementById("message")
+
 
 	buttons.forEach(function(button){
 		button.addEventListener("click", checkButton)
@@ -122,6 +166,11 @@ var buttons = Array.from(document.getElementsByTagName('li'));
 						hiddenWord = hiddenWord.substr(0, indice) + char + hiddenWord.substr(indice + 1);
 					})
 					word.innerHTML = hiddenWord
+					if(!hiddenWord.includes("_")){
+
+						winner();
+
+					}
 				}
 			else{
 				button.style.backgroundColor = "red"
@@ -155,6 +204,9 @@ var buttons = Array.from(document.getElementsByTagName('li'));
 				}
 				else if(mistakes === 10){
 					rightLeg();
+					message.innerHTML  = "Arggg you lost!"
+					word.innerHTML = guessWord
+					word.style.color = "red"
 				}
 			}
 		}
