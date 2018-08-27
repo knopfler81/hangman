@@ -13,7 +13,7 @@ ul {
 }
 
 
-li {
+.letter {
   float: left;
   padding: 15px;
   margin: 1px;

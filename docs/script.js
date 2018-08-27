@@ -14,6 +14,7 @@ const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm
 	for(var i = 0; i < alphabet.length; i++){
 		lettersList.id = "alphabet";
 		list = document.createElement("li");
+		list.classList.add("letter")
 		list.innerHTML = alphabet[i];
 		myKeys.appendChild(lettersList);
     lettersList.appendChild(list);
