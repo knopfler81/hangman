@@ -1,40 +1,54 @@
 canvas {
-	background-color: #000;
-	margin: 50px;
+  background-color: #000;
+  margin-top: 20px;
+  padding: 10px;
 }
 
 ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+  list-style-type: none;
+  margin: 20px;
+  padding: 0;
+  margin-bottom: 20px
+  max-width: 900px;
 }
+
 
 li {
-    float: left;
-    padding: 15px;
-    height: 50px;
-    width: 50px;
-    border: 1px solid green;
-    border-radius: 5px;
+  float: left;
+  padding: 15px;
+  margin: 1px;
+  height: 50px;
+  width: 50px;
+  border: 1px solid green;
+  border-radius: 5px;
+  background-color: #CCF7B3;
 }
-
-#alphabet {
-    margin: 15px auto;
-    padding: 0;
-    max-width: 900px;
-}
-
-#word {
-	font-size: 50px;
-	text-align: center;
-	letter-spacing: 5px;
-}
-
 
 button {
-    margin: 20px;
+  margin: 20px;
+}
+
+#keys {
+  margin-bottom: 20px;
+}
+
+#guessWord {
+  margin-top: 10px;
+  font-size: 50px;
+  letter-spacing: 15px;
 }
 
 #myTitle {
-    margin-top: 20px;
+  margin-top: 20px;
+  font-size: 50px;
 }
+
+#message {
+  margin: 20px;
+  font-style: italic;
+}
+
+#game {
+  text-align: center;
+}
+

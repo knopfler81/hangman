@@ -56,7 +56,48 @@ function leftLeg() {
   ctx.fillRect(145, 220, 5, 100);
 };
 
-// clavier
+
+// partie gagnée
+function winner(){
+
+	//nettoie
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+	// affiche le message de victoire
+	ctx.font = "50px Arial";
+	ctx.fillStyle = "#fff"
+	ctx.fillText("You won!",50,100);
+
+	//head
+	ctx.fillStyle = "green";	
+	ctx.beginPath();
+	ctx.arc(150, 175, 25, 0, Math.PI * 2, false)
+	ctx.fill();
+
+	//body
+	ctx.fillStyle = "#fff"
+	ctx.fillRect( 150, 200, 5, 100)
+
+	//leftHarm
+	ctx.fillStyle = "#fff"
+	ctx.fillRect( 70, 250, 80, 5)
+
+	//rightHarm
+	ctx.fillStyle = "#fff"
+	ctx.fillRect( 150,250, 80, 5)
+
+	//rightLeg
+	ctx.fillStyle = "#fff";
+	ctx.fillRect(155, 300, 5, 100);
+
+
+	//leftLeg
+	ctx.fillStyle = "#fff";
+	ctx.fillRect(145, 300, 5, 100);
+}
+
+
+// affiche le clavier
 const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
  function myKeys(){
@@ -76,10 +117,11 @@ const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm
 myKeys();
 
 
-var words = ["breaking bad", "sons of annarchy", "la casa de papel", "stanger things", "better call saul", "thirteen reasons why", "narcos", "black miror"]
+// créé les mots
+var words = ["breaking bad", "sons of annarchy", "la casa de papel", "stranger things", "better call saul", "thirteen reasons why", "narcos", "black mirror", " the innocents", "the mist"]
 
 
-var word = document.getElementById("word");
+var word = document.getElementById("guessWord");
 
 guessWord =  words[Math.floor(Math.random() * words.length)];
 
@@ -87,13 +129,14 @@ var hiddenWord = word.innerHTML  = guessWord.replace(/[a-z]/g, "_")
 
 var mistakes = 0
 
-// cherche si lettres dans le mot
-
+// cherche si les lettres sont dans le mot
 function refresh(){
 	location.reload()
 }
 
 var buttons = Array.from(document.getElementsByTagName('li'));
+var message = document.getElementById("message")
+
 
 	buttons.forEach(function(button){
 		button.addEventListener("click", checkButton)
@@ -121,7 +164,15 @@ var buttons = Array.from(document.getElementsByTagName('li'));
 
 						hiddenWord = hiddenWord.substr(0, indice) + char + hiddenWord.substr(indice + 1);
 					})
-					word.innerHTML = hiddenWord
+
+					word.innerHTML = hiddenWord;
+					if(!hiddenWord.includes("_")){
+						myKeys.innerHTML = "";
+						word.style.color = "green";
+						word.innerHTML = hiddenWord.toUpperCase();
+						word.style.letterSpacing = "0px";
+						winner();
+					}
 				}
 			else{
 				button.style.backgroundColor = "red"
@@ -155,10 +206,10 @@ var buttons = Array.from(document.getElementsByTagName('li'));
 				}
 				else if(mistakes === 10){
 					rightLeg();
+					myKeys.innerHTML  = "Arggg you lost!"
+					word.innerHTML = guessWord
+					word.style.color = "red"
 				}
 			}
 		}
 	})
-
-
-
