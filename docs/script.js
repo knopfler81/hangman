@@ -206,7 +206,7 @@ var message = document.getElementById("message")
 				}
 				else if(mistakes === 10){
 					rightLeg();
-					myKeys.innerHTML  = "Arggg you lost!"
+					myKeys.innerHTML  = ""
 					word.innerHTML = guessWord
 					word.style.color = "red"
 				}
